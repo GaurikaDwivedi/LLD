@@ -1,0 +1,59 @@
+Initial State:
+head             current
+  |                 |
+  v                 v
+[home] -> None -> None
+
+After visiting "https://www.example.com/page1":
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page1] -> None
+
+After visiting "https://www.example.com/page2":
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page2] -> <- [page1] -> None
+
+After visiting "https://www.example.com/page3":
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page3] -> <- [page2] -> <- [page1] -> None
+
+After performing browser.back(2):
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page1] -> <- [page3] -> <- [page2] -> None
+
+After performing browser.forward(1):
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page2] -> <- [page1] -> <- [page3] -> None
+
+After visiting "https://www.example.com/page4":
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page4] -> <- [page2] -> <- [page1] -> <- [page3] -> None
+
+After visiting "https://www.example.com/page5":
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page5] -> <- [page4] -> <- [page2] -> <- [page1] -> <- [page3] -> None
+
+After performing browser.back(3):
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page1] -> <- [page5] -> <- [page4] -> <- [page2] -> None
+
+After performing browser.forward(1):
+head             current
+  |                 |
+  v                 v
+[home] -> <- [page2] -> <- [page1] -> <- [page5] -> <- [page4] -> None
